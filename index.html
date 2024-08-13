@@ -4,6 +4,105 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <link rel="stylesheet" href="css/style.css" />
   </head>
-  <body></body>
+  <body>
+    <p><textarea id="editor" name="editor" rows="" cols="75"></textarea></p>
+    <div class="container">
+      <div class="keyboard">
+        <div class="row row-1">
+          <div id="27" class="key key-1-1 esc">esc</div>
+        </div>
+        <div class="row row-2">
+          <div id="192" class="key key-2-1">`</div>
+          <div id="49" class="key key-2-2">1</div>
+          <div id="50" class="key key-2-3">2</div>
+          <div id="51" class="key key-2-4">3</div>
+          <div id="52" class="key key-2-5">4</div>
+          <div id="53" class="key key-2-6">5</div>
+          <div id="54" class="key key-2-7">6</div>
+          <div id="55" class="key key-2-8">7</div>
+          <div id="56" class="key key-2-9">8</div>
+          <div id="57" class="key key-2-10">9</div>
+          <div id="48" class="key key-2-11">0</div>
+          <div id="109" class="key key-2-14">-</div>
+          <div id="187" class="key key-2-15">+</div>
+          <div id="8" class="key key-2-16 backspace">⌫</div>
+        </div>
+        <div class="row row-3">
+          <div id="9" class="key key-3-1 tab">↹</div>
+          <div id="81" class="key key-3-2">Q</div>
+          <div id="87" class="key key-3-3">W</div>
+          <div id="69" class="key key-3-4">E</div>
+          <div id="82" class="key key-3-5">R</div>
+          <div id="84" class="key key-3-6">T</div>
+          <div id="89" class="key key-3-7">Y</div>
+          <div id="85" class="key key-3-8">U</div>
+          <div id="73" class="key key-3-9">I</div>
+          <div id="79" class="key key-3-10">O</div>
+          <div id="80" class="key key-3-11">P</div>
+          <div id="219" class="key key-3-12">[</div>
+          <div id="221" class="key key-3-13">]</div>
+          <div id="220" class="key key-3-14">\</div>
+        </div>
+        <div class="row row-4">
+          <div id="20" class="key key-4-1 capslock">⇪</div>
+          <div id="65" class="key key-4-2">A</div>
+          <div id="83" class="key key-4-3">S</div>
+          <div id="68" class="key key-4-4">D</div>
+          <div id="70" class="key key-4-5">F</div>
+          <div id="71" class="key key-4-6">G</div>
+          <div id="72" class="key key-4-7">H</div>
+          <div id="74" class="key key-4-8">J</div>
+          <div id="75" class="key key-4-9">K</div>
+          <div id="76" class="key key-4-10">L</div>
+          <div id="186" class="key key-4-11">;</div>
+          <div id="48" class="key key-4-12">'</div>
+          <div id="13" class="key key-4-13 enter">↵</div>
+        </div>
+        <div class="row row-5">
+          <div id="16" class="key key-5-1 shift">⇧</div>
+          <div id="90" class="key key-5-2">Z</div>
+          <div id="88" class="key key-5-3">X</div>
+          <div id="67" class="key key-5-4">C</div>
+          <div id="86" class="key key-5-5">V</div>
+          <div id="66" class="key key-5-6">B</div>
+          <div id="78" class="key key-5-7">N</div>
+          <div id="77" class="key key-5-8">M</div>
+          <div id="188" class="key key-5-9">,</div>
+          <div id="190" class="key key-5-10">.</div>
+          <div id="193" class="key key-5-11">/</div>
+          <div id="16" class="key key-5-12 shift">⇧</div>
+        </div>
+        <!-- *** FIRST PASS ***
+        TODO: Implement meta key display and behavior in JS in order to 
+              account for OS difference -->
+        <div class="row row-6">
+          <div id="" class="key key-6-1 fn">🌐</div>
+          <div id="17" class="key key-6-2 ctrl">^</div>
+          <div id="18" class="key key-6-3">⌥</div>
+          <div id="91" class="key key-6-4 meta">⌘</div>
+          <div id="32" class="key key-6-5 space"></div>
+          <div id="92" class="key key-6-6 meta">⌘</div>
+          <div id="18" class="key key-6-7">⌥</div>
+          <div class="left-arrow">
+            <div id="37" class="smallKey">←</div>
+          </div>
+          <div id="upDown" class="">
+            <div class="top up">
+              <div id="38" class="smallKey">↑</div>
+            </div>
+            <div class="bottom down">
+              <div id="40" class="smallKey">↓</div>
+            </div>
+          </div>
+          <div class="right-arrow">
+            <div id="39" class="smallKey">→</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script src="js/jquery-3.7.1.slim.min.js"></script>
+    <script src="js/script.js"></script>
+  </body>
 </html>
