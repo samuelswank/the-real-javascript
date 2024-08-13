@@ -1,6 +1,6 @@
 # The Real JavaScript
 
-## An Introduction to the Javanese Language and Its Script for Programmers, Philologists, and Other Interested Parties
+## An Introduction to the Javanese Language and Its Script for Programmers, Philologists, and Others
 
 ### Resources
 
@@ -8,7 +8,7 @@
 
 [Javanese: A Cultural Approach by Ward Keeler](https://www.amazon.com/Javanese-Cultural-Approach-Ohio-Southeast/dp/0896801217)  
 [Javanese Grammar for Students by Stuart Robinson](https://www.amazon.com/Javanese-Grammar-Students-2nd-Southeast/dp/1876924128)  
-[Gampang ꦓꦩ꧀ꦥꦁ : Javanese Script Made Easy by Danish Danial Bin Anuar](https://www.amazon.com/Gampang-Javanese-Script-Made-Easy-ebook/dp/B07NJKQTS4) \
+[Gampang ꦓꦩ꧀ꦥꦁ : Javanese Script Made Easy by Danish Danial Bin Anuar](https://www.amazon.com/Gampang-Javanese-Script-Made-Easy-ebook/dp/B07NJKQTS4)
 
 #### Web Pages
 
