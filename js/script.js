@@ -43,16 +43,37 @@ mappingTextArea = {
     '"' : String.fromCharCode(0xa9ca), '<' : String.fromCharCode(0xa9c8), '>' : String.fromCharCode(0xa9c9)
 };
 
+let keys = {};
+
 $editor.on('keydown', e => {
+    keys[e.code] = true;
+
+    console.log('#' + e.code);
+    let $key = $('#' + e.code);
+    console.log($key);
+    $key.addClass('hover');
+
     let textToInsert = mappingTextArea[e.key];
     if (typeof textToInsert !== 'undefined') {
         e.preventDefault();
+
+
+
         let $editorVal = $editor.val();
         let curPos = $editor[0].selectionStart;
             
         $editor.val($editorVal.slice(0, curPos) + textToInsert + $editorVal.slice(curPos));
         $editor.focusOnPos(curPos + 1);
     }
+});
+
+$editor.on('keyup', e => {
+    console.log('#' + e.code);
+    let $key = $('#' + e.code);
+    console.log($key);
+    $key.removeClass('hover');
+
+    delete keys[e.code];
 });
 
 let $textKeys = $('.text');
@@ -162,4 +183,15 @@ $backspace.on('click', e => {
     
     let $editorVal = $editor.val();   
     $editor.val($editorVal.slice(0, curPos - 1) + $editorVal.slice(curPos));
+
+    $editor.focusOnPos(curPos + 1);
+});
+
+$enter = $('.enter');
+$enter.on('click', e => {
+    let $editorVal = $editor.val();
+    let curPos = $editor[0].selectionStart;     
+    $editor.val($editorVal.slice(0, curPos) + '\n' + $editorVal.slice(curPos));
+    
+    $editor.focusOnPos(curPos + 1);
 });

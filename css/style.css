@@ -54,6 +54,9 @@ body {
     user-select: none;
 }
 
+.hover { filter: brightness(125%); }
+
+/* .smallKey { user-select: none; } */
 .key:hover { filter: brightness(125%); }
 
 .esc { 
@@ -112,4 +115,4 @@ body {
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
-*/
+    */
