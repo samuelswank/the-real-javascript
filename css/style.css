@@ -32,7 +32,7 @@ body {
     align-items: center;
 }
 
-.row-1 > .key, .row-2 > .key {
+.row-1 > .esc, .row-2 > .key {
     width: 44px;
 }
 
@@ -59,6 +59,11 @@ body {
 
 .esc { 
     width: 2.75rem !important; 
+    height: 25px;
+}
+
+.utility { 
+    width: 90px; 
     height: 25px;
 }
 
