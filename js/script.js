@@ -134,9 +134,7 @@ $textKeys.on('click', e => {
         delete keys['ShiftLeft'];
         delete keys['ShiftRight'];
 
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'base');
-        }
+        changeState();
     }
 
 
@@ -175,20 +173,6 @@ $shift.on('click', () => {
 
 // Helper Functions
 
-function changeState() {
-    if (state === 'shift') {
-        state = 'base'
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'base');
-        }
-    } else {
-        state = 'shift';
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'shift');
-        }
-    }
-}
-
 function generateKeys(row, state) {
     $row = $(row).children();
     $row.each((i, el) => {
@@ -201,6 +185,20 @@ function generateKeys(row, state) {
                 $el.html(mapping[id]['base']);
         }
     });
+}
+
+function changeState() {
+    if (state === 'shift') {
+        state = 'base'
+        for (let i = 1; i < 7; ++i) {
+            generateKeys('.row-' + i, 'base');
+        }
+    } else {
+        state = 'shift';
+        for (let i = 1; i < 7; ++i) {
+            generateKeys('.row-' + i, 'shift');
+        }
+    }
 }
 
 function insertText(textToInsert) {
