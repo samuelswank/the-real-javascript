@@ -1,5 +1,6 @@
 let $editor = $('#editor');
 let keys = {};
+let $keyboard = $('.keyboard');
 let $textKeys = $('.text');
 let $backspace = $('.backspace');
 let $tab = $('.tab');
@@ -11,6 +12,11 @@ let $shift = $('.shift');
 mapping = {
     // Row 1
     Escape: { row: 1, base: 'esc', text: false, class: 'esc' },
+    SelectAll: { row: 1, base: 'Select All', text: false, class: 'utility select-all'},
+    Copy: { row: 1, base: 'Copy', text: false, class: 'utility copy'},
+    Undo: { row: 1, base: 'Undo', text: false, class: 'utility undo'},
+    Redo: { row: 1, base: 'Redo', text: false, class: 'utility redo'},
+    ClearAll: { row: 1, base: 'Clear All', text: false, class: 'utility clear-all'},
     // Row 2
     Backquote: { row: 2, base: String.fromCharCode(0xa9b3), shift: '~', text: true },
     Digit1: { row: 2, base: String.fromCharCode(0xa9d1), shift: '!', text: true },
@@ -42,7 +48,7 @@ mapping = {
     BracketRight: { row: 3, base: String.fromCharCode(0xa9c2), shift: '}', text: true },
     Backslash: { row: 3, base: String.fromCharCode(0xa9ca), shift: '|', text: true },
     // Row 4
-    CapsLock: { row: 4, base: '⇪', text: false },
+    CapsLock: { row: 4, base: '⇪', text: false, class: 'capslock' },
     KeyA: { row: 4, base: String.fromCharCode(0xa9a5), shift: String.fromCharCode(0xa9a6), text: true },
     KeyS: { row: 4, base: String.fromCharCode(0xa99d), shift: String.fromCharCode(0xa99e), text: true },
     KeyD: { row: 4, base: String.fromCharCode(0xa997), shift: String.fromCharCode(0xa999), text: true },
@@ -77,12 +83,16 @@ mapping = {
     AltRight: { row: 6, base: '⌥', text: false, class: 'alt' },
 };
 
+// Event Listeners 
+
 $(window).on('load', () => {
     for (let i = 1; i < 7; ++i) {
-        generateRows(i)
-        generateKeys('.row-' + i, state);
+        generateRows(i, state)
+        //generateKeys('.row-' + i, state);
     }
 });
+
+// For the physical keyboard
 
 $editor.on('keydown', e => {
     keys[e.code] = true;
@@ -137,7 +147,9 @@ $editor.on('keyup', e => {
     delete keys[e.code];
 });
 
-$textKeys.on('click', e => {
+// For the virtual keyboard
+
+$keyboard.on('click', '.text', e => {
     let textToInsert = $(e.target).text();
     insertText(textToInsert);
 
@@ -149,11 +161,9 @@ $textKeys.on('click', e => {
 
         changeState();
     }
-
-
 });
 
-$backspace.on('click', () => {
+$keyboard.on('click', '.backspace', () => {
     let curPos = $editor[0].selectionStart;
     
     if (curPos === 0)
@@ -165,19 +175,21 @@ $backspace.on('click', () => {
     $editor.focusOnPos(curPos + 1);
 });
 
-$tab.on('click', () => {
+$keyboard.on('click', '.tab', () => {
     insertText('\t');
 });
 
-$capsLock.on('click', () => {
+$keyboard.on('click', '.capslock', () => {
+    console.log(state);
     changeState();
+    console.log(state);
 });
 
-$enter.on('click', () => {
+$keyboard.on('click', '.enter', () => {
     insertText('\n');
 });
 
-$shift.on('click', () => {
+$keyboard.on('click', '.shift', () => {
     keys['ShiftLeft'] = true;
     keys['ShiftRight'] = true;
 
@@ -186,12 +198,13 @@ $shift.on('click', () => {
 
 // Helper Functions
 
-function generateRows(row) {
-    $keyboard = $('.keyboard');
+function generateRows(row, state) {
+    if ($keyboard.children().length == 6)
+        $keyboard.empty();
+
     $rowDiv = $('<div><div>');
     $rowDiv.addClass('row ' + 'row-' + row);
     $keyboard.append($rowDiv);
-    console.log(Object.keys(mapping));
     rowSubset = Object.keys(mapping).filter(objectKey => {
         return mapping[objectKey].row == row;
     });
@@ -201,35 +214,33 @@ function generateRows(row) {
         if (mapping[keyCode].class)
             class_ = mapping[keyCode].class;
 
-        $keyDiv.addClass('key ' + class_);
+        let text = '';
+        if (mapping[keyCode].text)
+            text = 'text';
+
+        $keyDiv.addClass('key ' + class_ + ' ' + text);
+
+        if (typeof mapping[keyCode][state] !== 'undefined')
+            $keyDiv.html(mapping[keyCode][state]);
+        else
+        $keyDiv.html(mapping[keyCode].base);
+
+        console.log($keyDiv);
+
         $rowDiv.append($keyDiv);
     });   
-}
-
-function generateKeys(row, state) {
-    $row = $(row).children();
-    $row.each((i, el) => {
-        $el = $(el);
-        let id = $el.attr('id')
-        if (Object.keys(mapping).includes(id)) {
-            if (typeof mapping[id][state] !== 'undefined')
-                $el.html(mapping[id][state]);
-            else
-                $el.html(mapping[id]['base']);
-        }
-    });
 }
 
 function changeState() {
     if (state === 'shift') {
         state = 'base'
         for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'base');
+            generateRows(i, 'base');
         }
     } else {
         state = 'shift';
         for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'shift');
+            generateRows(i, 'shift');
         }
     }
 }
