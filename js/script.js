@@ -3,7 +3,6 @@ let $editor = $('#editor');
 let keys = {};
 let $keyboard = $('.keyboard');
 
-
 mapping = {
     // Row 1
     Escape: { row: 1, base: 'esc', text: false, class: 'esc' },
@@ -155,6 +154,11 @@ $keyboard.on('click', '.copy', () => {
     */
 });
 
+$keyboard.on('click', '.clear-all', () => {
+    $editor.val('');
+    $editor.select();
+});
+
 // Standard Keys
 
 $keyboard.on('click', '.text', e => {
@@ -204,6 +208,8 @@ $keyboard.on('click', '.shift', () => {
     changeState();
 });
 
+// Helper Class
+
 // Helper Functions
 
 function generateRows(row, state) {
@@ -217,6 +223,7 @@ function generateRows(row, state) {
         return mapping[objectKey].row == row;
     });
     rowSubset.forEach(keyCode => {
+        console.log(keyCode);
         $keyDiv = $('<div id=' + keyCode + '></div>');
         let class_ = '';
         if (mapping[keyCode].class)
