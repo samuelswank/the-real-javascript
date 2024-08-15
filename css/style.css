@@ -64,8 +64,8 @@ body {
     height: 25px;
 }
 
-/* .tab { width: 72px; } */
-.text-start { margin-left: 5rem; }
+.tab { width: 72px; }
+/* .text-start { margin-left: 5rem; } */
 
 .backspace {
     width: 9.4rem !important;
