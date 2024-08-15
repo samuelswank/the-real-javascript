@@ -1,13 +1,8 @@
+let state = 'base';
 let $editor = $('#editor');
 let keys = {};
 let $keyboard = $('.keyboard');
-let $textKeys = $('.text');
-let $backspace = $('.backspace');
-let $tab = $('.tab');
-let $capsLock = $('.capslock');
-let state = 'base';
-let $enter = $('.enter');
-let $shift = $('.shift');
+
 
 mapping = {
     // Row 1
@@ -88,7 +83,6 @@ mapping = {
 $(window).on('load', () => {
     for (let i = 1; i < 7; ++i) {
         generateRows(i, state)
-        //generateKeys('.row-' + i, state);
     }
 });
 
@@ -97,9 +91,6 @@ $(window).on('load', () => {
 $editor.on('keydown', e => {
     keys[e.code] = true;
 
-    console.log(e.code);
-    console.log(keys);
-
     let $key = $('#' + e.code);
     $key.addClass('hover');
 
@@ -107,13 +98,9 @@ $editor.on('keydown', e => {
 
     if (e.code === 'ShiftLeft' || e.code === 'ShiftRight')
         changeState();
-
-    console.log(state);
     
     if (mapping[e.code].text)
         textToInsert = $key.html();
-
-    console.log(state);
 
     if (e.key === 'Escape') {
         $editor.blur();
@@ -148,6 +135,27 @@ $editor.on('keyup', e => {
 });
 
 // For the virtual keyboard
+
+// Utility Keys
+$keyboard.on('click', '.select-all', () => {
+    $editor.select();
+});
+
+$keyboard.on('click', '.copy', () => {
+    let copiedText = $editor.val();
+    navigator.clipboard.writeText(copiedText);
+
+    // For testing purposes
+    /*
+    navigator.clipboard
+        .readText()
+        .then(text => {
+        console.log(text);
+    });
+    */
+});
+
+// Standard Keys
 
 $keyboard.on('click', '.text', e => {
     let textToInsert = $(e.target).text();
