@@ -105,7 +105,9 @@ $editor.on('keydown', e => {
     } else if (e.key === 'Tab') {
         e.preventDefault();
         insertText('\t');
-    } else if (e.key == 'Enter') {
+    } else if (e.key === 'CapsLock') {
+        changeState();
+    } else if (e.key === 'Enter') {
         insertText('\n');
     } else if (typeof textToInsert !== 'undefined') {
         e.preventDefault();
