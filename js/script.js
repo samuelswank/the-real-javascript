@@ -8,7 +8,7 @@ let state = 'base';
 let $enter = $('.enter');
 let $shift = $('.shift');
 
-mappingKeyboard = {
+mapping = {
     // Row 1
     Escape: { base: 'esc' },
     // Row 2
@@ -92,13 +92,10 @@ $editor.on('keydown', e => {
     let textToInsert;
 
     if (typeof keys['ShiftLeft'] !== 'undefined' ||
-        typeof keys['ShiftRight'] !== 'undefined') {
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'shift');
-        }
-    }
+        typeof keys['ShiftRight'] !== 'undefined')
+        changeState();
     
-    if (mappingKeyboard[e.code].text)
+    if (mapping[e.code].text)
         textToInsert = $key.html();
 
     if (e.key === 'Escape') {
@@ -121,11 +118,8 @@ $editor.on('keyup', e => {
     $key.removeClass('hover');
 
     if (typeof keys['ShiftLeft'] !== 'undefined' ||
-        typeof keys['ShiftRight'] !== 'undefined') {
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'base');
-        }
-    }
+        typeof keys['ShiftRight'] !== 'undefined')
+        changeState();
 
     delete keys[e.code];
 });
@@ -165,17 +159,7 @@ $tab.on('click', () => {
 });
 
 $capsLock.on('click', () => {
-    if (state === 'shift') {
-        state = 'base'
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'base');
-        }
-    } else {
-        state = 'shift';
-        for (let i = 1; i < 7; ++i) {
-            generateKeys('.row-' + i, 'shift');
-        }
-    }
+    changeState();
 });
 
 $enter.on('click', () => {
@@ -186,6 +170,12 @@ $shift.on('click', () => {
     keys['ShiftLeft'] = true;
     keys['ShiftRight'] = true;
 
+    changeState();
+});
+
+// Helper Functions
+
+function changeState() {
     if (state === 'shift') {
         state = 'base'
         for (let i = 1; i < 7; ++i) {
@@ -197,20 +187,18 @@ $shift.on('click', () => {
             generateKeys('.row-' + i, 'shift');
         }
     }
-});
-
-// Helper Functions
+}
 
 function generateKeys(row, state) {
     $row = $(row).children();
     $row.each((i, el) => {
         $el = $(el);
         let id = $el.attr('id')
-        if (Object.keys(mappingKeyboard).includes(id)) {
-            if (typeof mappingKeyboard[id][state] !== 'undefined')
-                $el.html(mappingKeyboard[id][state]);
+        if (Object.keys(mapping).includes(id)) {
+            if (typeof mapping[id][state] !== 'undefined')
+                $el.html(mapping[id][state]);
             else
-                $el.html(mappingKeyboard[id]['base']);
+                $el.html(mapping[id]['base']);
         }
     });
 }
