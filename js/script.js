@@ -10,7 +10,7 @@ let $shift = $('.shift');
 
 mapping = {
     // Row 1
-    Escape: { row: 1, base: 'esc' },
+    Escape: { row: 1, base: 'esc', text: false, class: 'esc' },
     // Row 2
     Backquote: { row: 2, base: String.fromCharCode(0xa9b3), shift: '~', text: true },
     Digit1: { row: 2, base: String.fromCharCode(0xa9d1), shift: '!', text: true },
@@ -25,9 +25,9 @@ mapping = {
     Digit0: { row: 2, base: String.fromCharCode(0xa9d0), shift: String.fromCharCode(0xa9cd), text: true },
     Minus: { row: 2, base: String.fromCharCode(0xa9df), shift: '_', text: true },
     Equal: { row: 2, base: String.fromCharCode(0xa9c8), shift: String.fromCharCode(0xa9c9), text: true },
-    Backspace: { row: 2, base: '⌫', text: false },
+    Backspace: { row: 2, base: '⌫', text: false, class: 'backspace' },
     // Row 3
-    Tab: { row: 3, base: '↹', text: false },
+    Tab: { row: 3, base: '↹', text: false, class: 'tab' },
     KeyQ: { row: 3, base: String.fromCharCode(0xa9b2), shift: String.fromCharCode(0xa984), text: true },
     KeyW: { row: 3, base: String.fromCharCode(0xa9a4), shift: String.fromCharCode(0xa99f), text: true },
     KeyE: { row: 3, base: String.fromCharCode(0xa995), shift: String.fromCharCode(0xa996), text: true },
@@ -42,7 +42,7 @@ mapping = {
     BracketRight: { row: 3, base: String.fromCharCode(0xa9c2), shift: '}', text: true },
     Backslash: { row: 3, base: String.fromCharCode(0xa9ca), shift: '|', text: true },
     // Row 4
-    CapsLock: { base: '⇪', text: false },
+    CapsLock: { row: 4, base: '⇪', text: false },
     KeyA: { row: 4, base: String.fromCharCode(0xa9a5), shift: String.fromCharCode(0xa9a6), text: true },
     KeyS: { row: 4, base: String.fromCharCode(0xa99d), shift: String.fromCharCode(0xa99e), text: true },
     KeyD: { row: 4, base: String.fromCharCode(0xa997), shift: String.fromCharCode(0xa999), text: true },
@@ -54,31 +54,32 @@ mapping = {
     KeyL: { row: 4, base: String.fromCharCode(0xa99b), shift: String.fromCharCode(0xa988), text: true },
     Semicolon: { row: 4, base: String.fromCharCode(0xa994), shift: String.fromCharCode(0xa9c7), text: true },
     Quote: { row: 4, base: String.fromCharCode(0xa9c0), shift: String.fromCharCode(0xa9be), text: true },
-    Enter: { row: 4, base: '↵', text: false },
+    Enter: { row: 4, base: '↵', text: false, class: 'enter' },
     // Row 5
-    ShiftLeft: { base: '⇧' },
-    KeyZ : { base:  String.fromCharCode(0xa9b6), shift: String.fromCharCode(0xa9b7), text: true },
-    KeyX : { base:  String.fromCharCode(0xa9b8), shift: String.fromCharCode(0xa9b9), text: true },
-    KeyC : { base:  String.fromCharCode(0xa9bc), shift: String.fromCharCode(0xa98c), text: true },
-    KeyV : { base:  String.fromCharCode(0xa9ba), shift: String.fromCharCode(0xa9bb), text: true },
-    KeyB : { base:  String.fromCharCode(0xa9b4), shift: String.fromCharCode(0xa9b5), text: true },
-    KeyN : { base:  String.fromCharCode(0xa989), shift: String.fromCharCode(0xa98d), text: true },
-    KeyM : { base:  String.fromCharCode(0xa98a), shift: String.fromCharCode(0xa98b), text: true },
-    Comma: { base: String.fromCharCode(0xa981), shift: String.fromCharCode(0xa980), text: true },
-    Period: { base: String.fromCharCode(0xa982), shift: String.fromCharCode(0xa9bd), text: true },
-    Slash: { base: String.fromCharCode(0xa983), shift: String.fromCharCode(0xa9bf), text: true },
-    ShiftRight: { base: '⇧', text: false },
+    ShiftLeft: { row: 5, base: '⇧', class: 'shift' },
+    KeyZ : { row: 5, base:  String.fromCharCode(0xa9b6), shift: String.fromCharCode(0xa9b7), text: true },
+    KeyX : { row: 5, base:  String.fromCharCode(0xa9b8), shift: String.fromCharCode(0xa9b9), text: true },
+    KeyC : { row: 5, base:  String.fromCharCode(0xa9bc), shift: String.fromCharCode(0xa98c), text: true },
+    KeyV : { row: 5, base:  String.fromCharCode(0xa9ba), shift: String.fromCharCode(0xa9bb), text: true },
+    KeyB : { row: 5, base:  String.fromCharCode(0xa9b4), shift: String.fromCharCode(0xa9b5), text: true },
+    KeyN : { row: 5, base:  String.fromCharCode(0xa989), shift: String.fromCharCode(0xa98d), text: true },
+    KeyM : { row: 5, base:  String.fromCharCode(0xa98a), shift: String.fromCharCode(0xa98b), text: true },
+    Comma: { row: 5, base: String.fromCharCode(0xa981), shift: String.fromCharCode(0xa980), text: true },
+    Period: { row: 5, base: String.fromCharCode(0xa982), shift: String.fromCharCode(0xa9bd), text: true },
+    Slash: { row: 5, base: String.fromCharCode(0xa983), shift: String.fromCharCode(0xa9bf), text: true },
+    ShiftRight: { row: 5, base: '⇧', text: false, class: 'shift' },
     // Row 6
-    ControlLeft: { base: '^', text: false },
-    AltLeft: { base: '⌥', text: false },
-    MetaLeft: { base: '⌘', text: false },
-    Space: { base: ' ', text: true },
-    MetaRight: { base: '⌘', text: false },
-    AltRight: { base: '⌥', text: false },
+    ControlLeft: { row: 6, base: '^', text: false, class: 'ctrl' },
+    AltLeft: { row: 6, base: '⌥', text: false, class: 'alt' },
+    MetaLeft: { row: 6, base: '⌘', text: false, class: 'meta' },
+    Space: { row: 6, base: ' ', text: true, class: 'space' },
+    MetaRight: { row: 6, base: '⌘', text: false, class: 'meta' },
+    AltRight: { row: 6, base: '⌥', text: false, class: 'alt' },
 };
 
 $(window).on('load', () => {
     for (let i = 1; i < 7; ++i) {
+        generateRows(i)
         generateKeys('.row-' + i, state);
     }
 });
@@ -184,6 +185,26 @@ $shift.on('click', () => {
 });
 
 // Helper Functions
+
+function generateRows(row) {
+    $keyboard = $('.keyboard');
+    $rowDiv = $('<div><div>');
+    $rowDiv.addClass('row ' + 'row-' + row);
+    $keyboard.append($rowDiv);
+    console.log(Object.keys(mapping));
+    rowSubset = Object.keys(mapping).filter(objectKey => {
+        return mapping[objectKey].row == row;
+    });
+    rowSubset.forEach(keyCode => {
+        $keyDiv = $('<div id=' + keyCode + '></div>');
+        let class_ = '';
+        if (mapping[keyCode].class)
+            class_ = mapping[keyCode].class;
+
+        $keyDiv.addClass('key ' + class_);
+        $rowDiv.append($keyDiv);
+    });   
+}
 
 function generateKeys(row, state) {
     $row = $(row).children();
