@@ -8,8 +8,8 @@ mapping = {
     Escape: { row: 1, base: 'esc', text: false, class: 'esc' },
     SelectAll: { row: 1, base: 'Select All', text: false, class: 'utility select-all'},
     Copy: { row: 1, base: 'Copy', text: false, class: 'utility copy'},
-    Undo: { row: 1, base: 'Undo', text: false, class: 'utility undo'},
-    Redo: { row: 1, base: 'Redo', text: false, class: 'utility redo'},
+    // Undo: { row: 1, base: 'Undo', text: false, class: 'utility undo'},
+    // Redo: { row: 1, base: 'Redo', text: false, class: 'utility redo'},
     ClearAll: { row: 1, base: 'Clear All', text: false, class: 'utility clear-all'},
     // Row 2
     Backquote: { row: 2, base: String.fromCharCode(0xa9b3), shift: '~', text: true },
@@ -69,12 +69,12 @@ mapping = {
     Slash: { row: 5, base: String.fromCharCode(0xa983), shift: String.fromCharCode(0xa9bf), text: true },
     ShiftRight: { row: 5, base: '⇧', text: false, class: 'shift' },
     // Row 6
-    ControlLeft: { row: 6, base: '^', text: false, class: 'ctrl' },
-    AltLeft: { row: 6, base: '⌥', text: false, class: 'alt' },
-    MetaLeft: { row: 6, base: '⌘', text: false, class: 'meta' },
+    // ControlLeft: { row: 6, base: '^', text: false, class: 'ctrl' },
+    // AltLeft: { row: 6, base: '⌥', text: false, class: 'alt' },
+    // MetaLeft: { row: 6, base: '⌘', text: false, class: 'meta' },
     Space: { row: 6, base: ' ', text: true, class: 'space' },
-    MetaRight: { row: 6, base: '⌘', text: false, class: 'meta' },
-    AltRight: { row: 6, base: '⌥', text: false, class: 'alt' },
+    // MetaRight: { row: 6, base: '⌘', text: false, class: 'meta' },
+    // AltRight: { row: 6, base: '⌥', text: false, class: 'alt' },
 };
 
 // Event Listeners 

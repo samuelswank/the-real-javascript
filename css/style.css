@@ -84,4 +84,7 @@ body {
 }
 
 .meta { width: 4rem; }
-.space { width: calc(250px + 1.6em); }
+.space { 
+    margin-left: 15rem;
+    width: calc(250px + 1.6em); 
+}
