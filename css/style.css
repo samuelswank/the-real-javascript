@@ -1,4 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Muli&display=swap');
+@font-face {
+    font-family: 'jawadwipa';
+    src: url('../fonts/jawadwipa-adisastra-font/JawadwipaAdisastra-R7oE.ttf') format('truetype');
+    font-style: normal;
+}
 
 * { box-sizing: border-box; }
 
@@ -8,8 +13,17 @@ body {
     display: grid;
     place-items: center;
     height: 100vh;
-    overflow: hidden;
+    overflow: scroll;
     margin: 0;
+}
+
+.title { 
+    font-family: 'jawadwipa', serif; 
+    font-size: 5rem;
+}
+
+.subheading {
+    font-family: 'Cambria', 'Cochin', Georgia, Times, 'Times New Roman', serif;
 }
 
 #editor {

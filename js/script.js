@@ -85,6 +85,8 @@ $(window).on('load', () => {
     }
 });
 
+console.log($('.subheading'));
+
 // For the physical keyboard
 
 $editor.on('keydown', e => {
@@ -192,9 +194,7 @@ $keyboard.on('click', '.tab', () => {
 });
 
 $keyboard.on('click', '.capslock', () => {
-    console.log(state);
     changeState();
-    console.log(state);
 });
 
 $keyboard.on('click', '.enter', () => {
@@ -223,7 +223,6 @@ function generateRows(row, state) {
         return mapping[objectKey].row == row;
     });
     rowSubset.forEach(keyCode => {
-        console.log(keyCode);
         $keyDiv = $('<div id=' + keyCode + '></div>');
         let class_ = '';
         if (mapping[keyCode].class)
@@ -238,9 +237,7 @@ function generateRows(row, state) {
         if (typeof mapping[keyCode][state] !== 'undefined')
             $keyDiv.html(mapping[keyCode][state]);
         else
-        $keyDiv.html(mapping[keyCode].base);
-
-        console.log($keyDiv);
+            $keyDiv.html(mapping[keyCode].base);
 
         $rowDiv.append($keyDiv);
     });   
